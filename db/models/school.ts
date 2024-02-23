@@ -1,5 +1,4 @@
 import {Model, Sequelize, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional} from 'sequelize';
-import connection from '../config/sequelize';
 
 class School extends Model<InferAttributes<School>, InferCreationAttributes<School>> {
   declare id: number;
@@ -34,7 +33,7 @@ School.init(
     }
   },
   {
-    sequelize: connection,
+    sequelize,
     tableName: 'Schools'
   }
 )

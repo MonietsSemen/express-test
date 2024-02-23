@@ -1,3 +1,47 @@
+import { Options, Sequelize } from 'sequelize';
+const env = process.env.NODE_ENV || 'development';
+import pg from 'pg';
+import * as SchoolClass from './class';
+import * as School from './school';
+import * as User from './user';
+import connections from '../config/sequelize';
+
+pg.defaults.parseInt8 = true;
+
+type ModelInstances = {
+  init(sequelize: Sequelize): void;
+  associate?(sequelize: Sequelize): void;
+};
+
+type Config = {
+  username: string;
+  password: string | null;
+  database: string;
+  host: string;
+  dialect: 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql';
+};
+
+const models: ModelInstances[] = [
+  SchoolClass,
+  School,
+  User,
+];
+const options: Config = connections[env] as Config;
+
+export const sequelize = new Sequelize(options as Options);
+
+models.forEach((model) => model.init(sequelize));
+models.forEach((model) => {
+  if (model.associate) {
+    model.associate(sequelize);
+  }
+});
+
+export default { ...sequelize.models };
+
+
+/*
+
 'use strict';
 
 const fs = require('fs');
@@ -41,3 +85,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+*/

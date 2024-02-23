@@ -8,7 +8,7 @@ class SchoolClass extends Model<InferAttributes<SchoolClass>, InferCreationAttri
 }
 
 export const init = (sequelize: Sequelize) =>
-SchoolClass.init(
+  SchoolClass.init(
   {
     id: {
       allowNull: false,
