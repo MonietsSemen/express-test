@@ -1,9 +1,5 @@
 'use strict';
 
-// const { QueryInterface, DataTypes} = require('sequelize');
-// import { QueryInterface, DataTypes} from 'sequelize';
-//import { QueryInterface, DataTypes} from 'sequelize'
-
 import { QueryInterface, DataTypes} from 'sequelize'
 
 /** @type {import(‘sequelize-cli’).Migration} */
