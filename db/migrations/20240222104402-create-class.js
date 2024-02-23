@@ -1,9 +1,7 @@
 'use strict';
-import { QueryInterface, DataTypes } from 'sequelize';
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable('SchoolClass', {
       id: {
         allowNull: false,
@@ -11,12 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      schoolName: {
+      schoolId: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: {
-          model: 'school',
-          key: 'name'
+          model: 'Schools',
+          key: 'id'
         }
       },
       createdAt: {
@@ -29,7 +27,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
+  async down(queryInterface) {
     await queryInterface.dropTable('SchoolClass');
   }
 };

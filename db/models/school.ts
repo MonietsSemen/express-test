@@ -1,7 +1,7 @@
 import {Model, Sequelize, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional} from 'sequelize';
 
 class School extends Model<InferAttributes<School>, InferCreationAttributes<School>> {
-  declare id: number;
+  declare id: CreationOptional<number>;
   declare name: string;
   declare address: string;
   declare createdAt: CreationOptional<Date>;

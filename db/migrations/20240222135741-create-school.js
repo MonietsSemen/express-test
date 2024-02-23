@@ -1,12 +1,16 @@
-import { QueryInterface, DataTypes } from 'sequelize';
+'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Schools', {
-      name: {
+      id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      name: {
         type: Sequelize.STRING
       },
       address: {
@@ -22,7 +26,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface: QueryInterface, Sequelize: typeof DataTypes) {
+  async down(queryInterface) {
     await queryInterface.dropTable('Schools');
   }
 };

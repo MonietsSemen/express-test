@@ -20,7 +20,7 @@ export const init = (sequelize: Sequelize) =>
       allowNull: false,
       type: DataTypes.INTEGER,
       references: {
-        model: 'school',
+        model: 'schools',
         key: 'id'
       }
     },

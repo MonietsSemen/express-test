@@ -1,12 +1,12 @@
 import { Sequelize } from 'sequelize';
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+import config from "./config.json"
 
+const env = process.env.NODE_ENV || 'development';
 const connections: Sequelize = checkConnection();
 
 function checkConnection() {
-  if (config.use_env_variable) {
-    return new Sequelize(process.env[config.use_env_variable], config);
+  if (process.env.NODE_ENV) {
+    return new Sequelize(process.env[env], config);
   } else {
     return new Sequelize(config.database, config.username, config.password, config);
   }
